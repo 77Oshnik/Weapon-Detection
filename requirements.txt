@@ -1,0 +1,8 @@
+ultralytics       # YOLOv8
+opencv-python     # Video processing
+numpy
+pandas
+matplotlib
+pyyaml           # Configuration files
+requests         # HTTP requests
+tqdm             # Progress bars
