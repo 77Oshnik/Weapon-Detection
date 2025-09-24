@@ -169,10 +169,6 @@ weapon_detection/
 
 Below are real outputs from this repository under the `images/` folder.
 
-### Demo Video
-
-- Download/preview: [images/2025-09-24 20-46-02.mp4](images/2025-09-24%2020-46-02.mp4)
-
 ### Inference Samples
 
 ![Validation Predictions](images/val_batch0_pred.jpg)
@@ -189,6 +185,8 @@ Below are real outputs from this repository under the `images/` folder.
 ![PR Curve](images/BoxPR_curve.png)
 ![R Curve](images/BoxR_curve.png)
 
+### Demo Video
+https://github.com/user-attachments/assets/b9a71f12-34ad-45e9-bae1-46a9821d7032
 
 ### Sample Videos
 Place test videos in `test_videos/` directory and run:
