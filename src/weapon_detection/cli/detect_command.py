@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 from ..detector import WeaponDetector
-from ..utils.metrics import calculate_metrics, generate_report, save_detection_log
+from ..utils.metrics import calculate_metrics, generate_report, save_detection_log, ThreatLevel
 
 
 def add_args(parser):
@@ -93,8 +93,14 @@ def main(args):
                 print(f"[INFO] Progress: {progress:.1f}% ({frame_number}/{total_frames})")
             
             # Alert for threats
-            if threat_level.value != "SAFE":
-                print(f"[ALERT] Frame {frame_number}: {threat_level.value} threat!")
+            if threat_level != ThreatLevel.SAFE:
+                threat_names = {
+                    ThreatLevel.LOW: "LOW",
+                    ThreatLevel.MEDIUM: "MEDIUM", 
+                    ThreatLevel.HIGH: "HIGH"
+                }
+                threat_name = threat_names.get(threat_level, "UNKNOWN")
+                print(f"[ALERT] Frame {frame_number}: {threat_name} threat!")
                 weapon_dets = [d for d in detections if d['class_name'] in detector.weapon_classes]
                 for det in weapon_dets:
                     print(f"  -> {det['class_name']} (conf: {det['confidence']:.3f})")

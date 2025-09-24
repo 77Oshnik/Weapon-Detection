@@ -3,28 +3,7 @@
 import cv2
 import numpy as np
 from typing import List, Dict
-from enum import Enum
-
-
-class ThreatLevel(Enum):
-    """Threat level enumeration."""
-    SAFE = "SAFE"
-    LOW = "LOW"
-    MEDIUM = "MEDIUM"
-    HIGH = "HIGH"
-    
-    def __lt__(self, other):
-        order = {self.SAFE: 0, self.LOW: 1, self.MEDIUM: 2, self.HIGH: 3}
-        return order[self] < order[other]
-    
-    def __le__(self, other):
-        return self < other or self == other
-    
-    def __gt__(self, other):
-        return not self <= other
-    
-    def __ge__(self, other):
-        return not self < other
+from .metrics import ThreatLevel
 
 
 # Color schemes
@@ -91,15 +70,20 @@ def create_threat_overlay(frame: np.ndarray, threat_level: ThreatLevel) -> np.nd
     """
     annotated = frame.copy()
     
-    # Get threat color
-    if isinstance(threat_level, str):
-        threat_level = ThreatLevel(threat_level)
+    # Get threat color and name
+    threat_names = {
+        ThreatLevel.SAFE: "SAFE",
+        ThreatLevel.LOW: "LOW", 
+        ThreatLevel.MEDIUM: "MEDIUM",
+        ThreatLevel.HIGH: "HIGH"
+    }
     
     color = THREAT_COLORS.get(threat_level, (255, 255, 255))
+    threat_name = threat_names.get(threat_level, "UNKNOWN")
     
     # Draw threat level indicator
     cv2.rectangle(annotated, (10, 10), (200, 50), color, -1)
-    cv2.putText(annotated, f"THREAT: {threat_level.value}", (20, 35), 
+    cv2.putText(annotated, f"THREAT: {threat_name}", (20, 35), 
                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
     
     return annotated

@@ -5,7 +5,26 @@ import time
 from pathlib import Path
 from typing import Dict, List, Any
 from datetime import datetime
-from .visualization import ThreatLevel
+from enum import Enum
+
+class ThreatLevel(Enum):
+    """Threat level enumeration."""
+    SAFE = 0
+    LOW = 1
+    MEDIUM = 2
+    HIGH = 3
+    
+    def __lt__(self, other):
+        return self.value < other.value
+    
+    def __le__(self, other):
+        return self.value <= other.value
+    
+    def __gt__(self, other):
+        return self.value > other.value
+    
+    def __ge__(self, other):
+        return self.value >= other.value
 
 
 def calculate_metrics(detection_log: List[Dict], total_frames: int) -> Dict[str, Any]:

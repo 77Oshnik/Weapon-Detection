@@ -63,7 +63,6 @@ venv.bak/
 
 # YOLOv8 training outputs
 runs/
-weights/
 *.pt
 
 # EXCLUDE ALL DATASETS - TOO LARGE FOR GITHUB
@@ -93,8 +92,7 @@ ehthumbs.db
 Thumbs.db
 
 # Large model files (use Git LFS if needed)
-*.weights
-models/weights/*.pt
+
 
 # Temporary files
 *.tmp

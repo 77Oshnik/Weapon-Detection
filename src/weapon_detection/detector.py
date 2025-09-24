@@ -8,8 +8,8 @@ from pathlib import Path
 import time
 from datetime import datetime
 
-from .utils.visualization import draw_detections, create_threat_overlay
-from .utils.metrics import ThreatLevel
+from .utils.visualization import draw_detections, create_threat_overlay, ThreatLevel
+from .utils.metrics import calculate_metrics
 
 
 class WeaponDetector:
@@ -105,13 +105,13 @@ class WeaponDetector:
                         
                         # Determine threat level
                         if class_name in ['pistol', 'rifle'] and conf > 0.7:
-                            threat_level = max(threat_level, ThreatLevel.HIGH)
+                            threat_level = ThreatLevel.HIGH if ThreatLevel.HIGH.value > threat_level.value else threat_level
                         elif class_name in ['pistol', 'rifle'] and conf > 0.5:
-                            threat_level = max(threat_level, ThreatLevel.MEDIUM)
+                            threat_level = ThreatLevel.MEDIUM if ThreatLevel.MEDIUM.value > threat_level.value else threat_level
                         elif class_name == 'knife' and conf > 0.6:
-                            threat_level = max(threat_level, ThreatLevel.MEDIUM)
+                            threat_level = ThreatLevel.MEDIUM if ThreatLevel.MEDIUM.value > threat_level.value else threat_level
                         else:
-                            threat_level = max(threat_level, ThreatLevel.LOW)
+                            threat_level = ThreatLevel.LOW if ThreatLevel.LOW.value > threat_level.value else threat_level
         
         # Log weapon detections
         if weapon_detected:
