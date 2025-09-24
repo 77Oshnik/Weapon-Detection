@@ -243,19 +243,31 @@ weapon_detection/
 5. **Visualization**: Bounding boxes and alerts
 6. **Output**: Display, recording, logging
 
-## 📱 Screenshots
+## 📱 Screenshots and Media
 
-### Video Detection Interface
-- Real-time threat level indicator (top-left)
-- Weapon detection bounding boxes with confidence scores
-- Frame counter and timestamp (bottom)
-- Color-coded alerts: Red=HIGH, Orange=MEDIUM, Yellow=LOW, Green=SAFE
+Below are real outputs from this repository under the `images/` folder.
 
-### Detection Examples
-- **Pistol Detection**: Red bounding box, HIGH threat alert
-- **Rifle Detection**: Red bounding box, HIGH threat alert
-- **Knife Detection**: Orange bounding box, MEDIUM threat alert
-- **Safe Scene**: Green overlay, no detections
+### Inference Samples
+
+![Validation Predictions](images/val_batch0_pred.jpg)
+![Validation Labels](images/val_batch2_labels.jpg)
+
+### Sample Frames
+
+![Sample Frame 1](images/sample.png)
+![Sample Frame 2](images/sample2.png)
+
+### Training/Validation Metrics
+
+![Confusion Matrix](images/confusion_matrix.png)
+![PR Curve](images/BoxPR_curve.png)
+![R Curve](images/BoxR_curve.png)
+
+### Demo Video
+
+- Download/preview: [images/2025-09-24 20-46-02.mkv](images/2025-09-24%2020-46-02.mp4)
+
+
 
 ## 📊 System Performance
 
